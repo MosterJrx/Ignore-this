@@ -1,0 +1,99 @@
+<!DOCTYPE html><html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museo de Dibujos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #b68bf7;
+        }
+        .museum-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .button {
+            background-color: #b68bf7;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            margin: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .button:hover {
+            background-color: #8a63c4;
+        }
+        .frame {
+            width: 400px;
+            height: 400px;
+            border: 5px solid #b68bf7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            position: relative;
+            border-radius: 10px;
+        }
+        .frame img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .caption {
+            position: absolute;
+            top: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Museo de Dibujos</h1>
+    <div class="museum-container">
+        <button class="button" onclick="prevImage()">&#9665;</button>
+        <div class="frame">
+            <span class="caption" id="caption">Dibujo 1</span>
+            <img id="displayedImage" src="https://via.placeholder.com/400" alt="Dibujo">
+        </div>
+        <button class="button" onclick="nextImage()">&#9655;</button>
+    </div><script>
+    const images = [
+        { src: "https://via.placeholder.com/400", caption: "Mari y sus locuras" },
+        { src: "https://via.placeholder.com/400/ff0000", caption: "Myajaja" },
+        { src: "https://via.placeholder.com/400/00ff00", caption: "Dibujo 3" }
+    ];
+    let currentIndex = 0;
+    
+    function updateImage() {
+        document.getElementById("displayedImage").src = images[currentIndex].src;
+        document.getElementById("caption").textContent = images[currentIndex].caption;
+    }
+    
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateImage();
+    }
+    
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateImage();
+    }
+</script>
+
+</body>
+</html>
